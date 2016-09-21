@@ -1,5 +1,5 @@
 {
-	"name": "GlueWork/glCache",
+	"name": "gluework/glcache",
 	"version": "0.7",
 	"description": "glCache: useful PHP cache",
 	"keywords": ["mem-cache", "cache", "nette"],
