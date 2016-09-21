@@ -1,6 +1,5 @@
 {
 	"name": "gluework/glcache",
-	"version": "0.7",
 	"description": "glCache: useful PHP cache",
 	"keywords": ["mem-cache", "cache", "nette"],
 	"homepage": "",
@@ -23,7 +22,7 @@
 	},
 	"extra": {
 		"branch-alias": {
-			"dev-master": "v.0.7.2"
+			"dev-master": "v.0.7.3"
 		}
 	}
 }
