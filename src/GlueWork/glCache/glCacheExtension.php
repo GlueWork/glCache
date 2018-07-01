@@ -7,7 +7,7 @@ namespace GlueWork\glCache;
 /**
  *
  * @author Machacek Milan <machcek76@gmil.com>
- * @version 0.7.1
+ * @version 0.7.4
  * @date 2018-07-02
  */
 
