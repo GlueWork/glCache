@@ -7,8 +7,8 @@ namespace GlueWork\glCache;
 /**
  *
  * @author Machacek Milan <machcek76@gmil.com>
- * @version 0.7
- * @date 2016-09-21
+ * @version 0.7.1
+ * @date 2018-07-02
  */
 
 use Nette;
@@ -26,22 +26,22 @@ class glCacheExtension extends DI\CompilerExtension {
 	public $time		= "30 minutes";
 
 	
-	
-	
-	
+
 	/**
-	 * 
-	 * @param type $config
+	 * construct function
+	 *
+	 * @param array $config
 	 */
-	public function initCache($config){
+	public function __construct( array $config ){
 		$this->tempDir = $config['tempDir'];
 		if (!file_exists($this->tempDir)) {
-			mkdir($tempDir, 0777, true);
+			mkdir($this['tempDir'], 0777, true);
 		}
-		$this->time = $config['time'];
-		$this->storage = new \Nette\Caching\Storages\FileStorage($this->tempDir);
-		$this->cache = new \Nette\Caching\Cache($this->storage, $config['name']);
+		$this->time 	= $config['time'];
+		$this->storage 	= new \Nette\Caching\Storages\FileStorage($this->tempDir);
+		$this->cache 	= new \Nette\Caching\Cache($this->storage, $config['name']);
 	}
+	
 
 
 	
