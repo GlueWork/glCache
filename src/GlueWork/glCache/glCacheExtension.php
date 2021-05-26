@@ -1,54 +1,47 @@
 <?php
 
-
 namespace GlueWork\glCache;
-
 
 /**
  *
  * @author Machacek Milan <machcek76@gmil.com>
- * @version 0.7.4
- * @date 2018-07-02
+ * @version 0.7.1
+ * @date 2016-09-21
  */
 
-use Nette;
 use Nette\DI;
 use Nette\Caching\Cache;
+use Nette\Caching\Storages\FileStorage;
 
 class glCacheExtension extends DI\CompilerExtension {
 	
 	
-	private $storage	= NULL;
-	private $cache		= NULL;
-	private $tempDir;
+	private FileStorage $storage;
+	private Cache $cache;
+	private string $tempDir;
 
-	public $nocache		= false;
-	public $time		= "30 minutes";
-
+	public bool $nocache = false;
+	public string $time = "30 minutes";
 	
-
-	/**
-	 * construct function
-	 *
-	 * @param array $config
-	 */
-	public function __construct( array $config ){
-		$this->tempDir = $config['tempDir'];
-		if (!file_exists($this->tempDir)) {
-			mkdir($this['tempDir'], 0777, true);
-		}
-		$this->time 	= $config['time'];
-		$this->storage 	= new \Nette\Caching\Storages\FileStorage($this->tempDir);
-		$this->cache 	= new \Nette\Caching\Cache($this->storage, $config['name']);
-	}
-	
-
-
 	
 	/**
 	 * 
-	 * @param type $key
-	 * @param type $data
+	 * @param mixed[] $config
+	 */
+	public function initCache($config){
+		$this->tempDir = $config['tempDir'];
+		if (!file_exists($this->tempDir)) {
+			mkdir($this->tempDir, 0777, true);
+		}
+		$this->time = $config['time'];
+		$this->storage = new FileStorage($this->tempDir);
+		$this->cache = new Cache($this->storage, $config['name']);
+	}
+	
+	/**
+	 * 
+	 * @param string $key
+	 * @param mixed|mixed[] $data
 	 */
 	public function saveCache($key, $data) {
 		$this->cache->save($key, $data, array(
@@ -58,7 +51,7 @@ class glCacheExtension extends DI\CompilerExtension {
 
 	/**
 	 * 
-	 * @param type $key
+	 * @param string $key
 	 * @return NULL or DATA
 	 */
 	public function loadCache($key) {
