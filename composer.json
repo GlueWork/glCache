@@ -19,10 +19,5 @@
 	},
 	"autoload": {
 		"classmap": ["src"]
-	},
-	"extra": {
-		"branch-alias": {
-			"master": "v.0.7.4"
-		}
 	}
 }
